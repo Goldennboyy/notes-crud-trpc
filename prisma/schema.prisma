@@ -6,7 +6,7 @@ generator client {
 }
 
 datasource db {
-    provider = "sqlite"
+    provider = "postgresql"
     url      = env("DATABASE_URL")
 }
 
@@ -14,4 +14,13 @@ model Example {
     id        String   @id @default(cuid())
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
+}
+
+// add a model notes to the database then push with npx prisma db push
+
+model Note {
+    id        String   @id @default(cuid())
+    text      String
+    createdAt DateTime @default(now())
+    updatedAt DateTime @default(now())
 }
