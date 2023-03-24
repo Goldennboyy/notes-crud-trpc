@@ -14,8 +14,6 @@ function AddNote() {
     },
   });
 
-  console.log(newNotes);
-
   function handleSubmit() {
     addNote.mutate({
       text: newNotes,
@@ -29,11 +27,15 @@ function AddNote() {
         <h1 className="text-center text-3xl">Notes - C.R.U.D W/ TRPC</h1>
       </div>
       <div className="pt-24">
-        <div className="flex w-full flex-col gap-y-4 border p-10">
+        <div className="flex w-full flex-col gap-y-4 rounded-lg border p-10">
           <label className="text-xl" htmlFor="note">
             Create New Note
           </label>
           <textarea
+            className="bg-white text-black"
+            cols={1}
+            rows={2}
+            placeholder="Enter a note here..."
             name="note"
             value={newNotes}
             onChange={(e) => setNotes(e.target.value)}

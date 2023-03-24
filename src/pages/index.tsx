@@ -6,7 +6,7 @@ import Notes from "~/components/Notes";
 const Home: NextPage = () => {
   return (
     <div>
-      <Layout page="Notes-TRPC">
+      <Layout data-theme="night" page="Notes-TRPC">
         <NoteInput />
         <Notes />
       </Layout>

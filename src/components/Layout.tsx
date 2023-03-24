@@ -8,7 +8,7 @@ interface rootLayoutProps {
 
 function Layout({ children, page }: rootLayoutProps) {
   return (
-    <html lang="fr">
+    <html data-theme="night" lang="fr">
       <Head>
         <title>{page}</title>
       </Head>
