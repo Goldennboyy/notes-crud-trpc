@@ -1,16 +1,14 @@
 import { type NextPage } from "next";
-import AddNote from "~/components/AddNote";
+import NoteInput from "~/components/NoteInput";
 import Layout from "~/components/Layout";
-
-import { api } from "~/utils/api";
+import Notes from "~/components/Notes";
 
 const Home: NextPage = () => {
-  //const hello = api.example.hello.useQuery({ text: "from Emmanuel" });
-
   return (
     <div>
-      <Layout page="notes app w/ TRPC">
-        <AddNote />
+      <Layout page="Notes-TRPC">
+        <NoteInput />
+        <Notes />
       </Layout>
     </div>
   );

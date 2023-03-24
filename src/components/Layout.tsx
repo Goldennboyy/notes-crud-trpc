@@ -11,9 +11,12 @@ function Layout({ children, page }: rootLayoutProps) {
     <html lang="fr">
       <Head>
         <title>{page}</title>
-        {/* probably add a link */}
       </Head>
-      <body>{children}</body>
+      <body>
+        <div className="container mx-auto min-h-screen max-w-5xl items-center justify-center px-6">
+          {children}
+        </div>
+      </body>
       {/* probably add a footer in the end maybe */}
     </html>
   );

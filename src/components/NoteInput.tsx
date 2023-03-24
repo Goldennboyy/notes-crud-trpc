@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { z } from "zod";
-import { noteSchema, noteInput } from "~/server/api/routers/notes";
+// import { noteSchema } from "~/server/api/routers/notes";
 
 import { api } from "~/utils/api";
 
@@ -9,25 +8,23 @@ function AddNote() {
 
   const trpc = api.useContext();
 
-  const addNote = api.note.create.useMutation();
+  const addNote = api.note.create.useMutation({
+    onSuccess: async () => {
+      await trpc.note.getAll.invalidate();
+    },
+  });
 
   console.log(newNotes);
 
   function handleSubmit() {
-    const result = noteSchema.safeParse(newNotes);
-    if (!result.success) {
-      const err = result.error.format()._errors.join("\n");
-      console.log(err);
-      return;
-    }
-    // create note mutation
     addNote.mutate({
       text: newNotes,
     });
+    setNotes(""); // remove the set value in the input
   }
 
   return (
-    <section className="container mx-auto min-h-screen max-w-5xl items-center justify-center px-6">
+    <section>
       <div className="mt-10">
         <h1 className="text-center text-3xl">Notes - C.R.U.D W/ TRPC</h1>
       </div>
@@ -42,8 +39,10 @@ function AddNote() {
             onChange={(e) => setNotes(e.target.value)}
           ></textarea>
           <button
+            type="button"
             className="btn-primary btn mx-auto max-w-md items-center justify-center"
             onClick={handleSubmit}
+            disabled={newNotes.length === 0}
           >
             Add note
           </button>
